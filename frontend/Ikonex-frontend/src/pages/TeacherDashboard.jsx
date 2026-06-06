@@ -19,10 +19,10 @@ function TeacherDashboard() {
     try {
       const [studentsRes, streamsRes, subjectsRes, scoresRes] =
         await Promise.all([
-          axios.get("http://localhost:5000/api/students"),
-          axios.get("http://localhost:5000/api/streams"),
-          axios.get("http://localhost:5000/api/subjects"),
-          axios.get("http://localhost:5000/api/scores"),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/students`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/streams`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/subjects`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/scores`),
         ]);
 
       setStudents(studentsRes.data);

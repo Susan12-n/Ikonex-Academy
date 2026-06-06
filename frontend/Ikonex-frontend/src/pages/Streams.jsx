@@ -19,7 +19,7 @@ function Streams() {
   const fetchStreams = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/streams"
+        `${import.meta.env.VITE_API_URL}/api/streams`
       );
 
       setStreams(res.data);
@@ -41,7 +41,7 @@ function Streams() {
     try {
       if (editing) {
         await axios.put(
-          `http://localhost:5000/api/streams/${formData.stream_id}`,
+          `${import.meta.env.VITE_API_URL}/api/streams/${formData.stream_id}`,
           {
             stream_name: formData.stream_name,
           }
@@ -50,7 +50,7 @@ function Streams() {
         alert("Stream Updated Successfully");
       } else {
         await axios.post(
-          "http://localhost:5000/api/streams",
+          `${import.meta.env.VITE_API_URL}/api/streams`,
           formData
         );
 
@@ -88,7 +88,7 @@ function Streams() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/streams/${id}`
+        `${import.meta.env.VITE_API_URL}/api/streams/${id}`
       );
 
       fetchStreams();

@@ -18,12 +18,10 @@ function Assessments() {
 
   const fetchAssessments = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/assessments"
-      );
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/assessments`);
       setAssessments(res.data);
     } catch (error) {
-      console.error(error);
+      console.error("Fetch error:", error);
     }
   };
 
@@ -40,7 +38,7 @@ function Assessments() {
     try {
       if (isEditing) {
         await axios.put(
-          `http://localhost:5000/api/assessments/${formData.assessment_id}`,
+          `${import.meta.env.VITE_API_URL}/api/assessments/${formData.assessment_id}`,
           {
             term: formData.term,
             year: formData.year,
@@ -50,7 +48,7 @@ function Assessments() {
         alert("Assessment updated successfully");
       } else {
         await axios.post(
-          "http://localhost:5000/api/assessments",
+          `${import.meta.env.VITE_API_URL}/api/assessments`,
           formData
         );
 
@@ -66,7 +64,7 @@ function Assessments() {
       setIsEditing(false);
       fetchAssessments();
     } catch (error) {
-      console.error(error);
+      console.error("Submit error:", error);
       alert("Operation failed");
     }
   };
@@ -82,33 +80,24 @@ function Assessments() {
   };
 
   const handleDelete = async (id) => {
-    const confirmDelete = window.confirm("Delete this assessment?");
-    if (!confirmDelete) return;
-
     try {
-      await axios.delete(
-        `http://localhost:5000/api/assessments/${id}`
-      );
-
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/assessments/${id}`);
       fetchAssessments();
     } catch (error) {
-      console.error(error);
+      console.error("Delete error:", error);
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-8">
-
       <h1 className="text-4xl font-bold text-orange-500 mb-6">
         Assessment Management
       </h1>
 
       {/* FORM */}
       <div className="bg-gray-800 p-6 rounded-xl mb-8">
-        <form
-          onSubmit={handleSubmit}
-          className="grid md:grid-cols-3 gap-4"
-        >
+        <form onSubmit={handleSubmit} className="grid md:grid-cols-3 gap-4">
+
           <input
             name="assessment_id"
             placeholder="Assessment ID"
@@ -121,7 +110,7 @@ function Assessments() {
 
           <input
             name="term"
-            placeholder="Term (e.g. Term 1)"
+            placeholder="Term"
             value={formData.term}
             onChange={handleChange}
             className="p-3 bg-gray-700 rounded"
@@ -183,9 +172,9 @@ function Assessments() {
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
-
     </div>
   );
 }

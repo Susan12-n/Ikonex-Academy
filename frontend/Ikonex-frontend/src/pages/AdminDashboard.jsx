@@ -15,19 +15,19 @@ function AdminDashboard() {
   const fetchData = async () => {
     try {
       const studentsRes = await axios.get(
-        "http://localhost:5000/api/students"
+        (`${import.meta.env.VITE_API_URL}/api/students`)
       );
 
       const streamsRes = await axios.get(
-        "http://localhost:5000/api/streams"
+        (`${import.meta.env.VITE_API_URL}/api/streams`)
       );
 
       const subjectsRes = await axios.get(
-        "http://localhost:5000/api/subjects"
+        (`${import.meta.env.VITE_API_URL}/api/subjects`)
       );
 
       const scoresRes = await axios.get(
-        "http://localhost:5000/api/scores"
+        (`${import.meta.env.VITE_API_URL}/api/scores`)
       );
 
       setStudents(studentsRes.data);

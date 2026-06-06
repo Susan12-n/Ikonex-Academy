@@ -27,7 +27,7 @@ function Scores() {
   const fetchScores = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/scores"
+        `${import.meta.env.VITE_API_URL}/api/scores`
       );
       setScores(res.data);
     } catch (error) {
@@ -38,7 +38,7 @@ function Scores() {
   const fetchStudents = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/students"
+        `${import.meta.env.VITE_API_URL}/api/students`
       );
       setStudents(res.data);
     } catch (error) {
@@ -49,7 +49,7 @@ function Scores() {
   const fetchSubjects = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/subjects"
+        `${import.meta.env.VITE_API_URL}/api/subjects`
       );
       setSubjects(res.data);
     } catch (error) {
@@ -60,7 +60,7 @@ function Scores() {
   const fetchAssessments = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/assessments"
+        `${import.meta.env.VITE_API_URL}/api/assessments`
       );
       setAssessments(res.data);
     } catch (error) {
@@ -81,14 +81,14 @@ function Scores() {
     try {
       if (isEditing) {
         await axios.put(
-          `http://localhost:5000/api/scores/${formData.score_id}`,
+          `${import.meta.env.VITE_API_URL}/api/scores/${formData.score_id}`,
           formData
         );
 
         alert("Score updated successfully");
       } else {
         await axios.post(
-          "http://localhost:5000/api/scores",
+          `${import.meta.env.VITE_API_URL}/api/scores`,
           formData
         );
 
@@ -129,7 +129,7 @@ function Scores() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/scores/${id}`
+        `${import.meta.env.VITE_API_URL}/api/scores/${id}`
       );
 
       fetchScores();

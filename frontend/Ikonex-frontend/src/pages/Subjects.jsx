@@ -88,7 +88,7 @@ function Subjects() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/subjects/${id}`
+        `${import.meta.env.VITE_API_URL}/api/subjects/${id}`
       );
 
       fetchSubjects();
