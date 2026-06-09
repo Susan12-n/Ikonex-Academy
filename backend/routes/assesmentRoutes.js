@@ -5,6 +5,8 @@ const API_URL = "https://ikonex-academy-1b17.onrender.com";
 
 function Assessments() {
   const [assessments, setAssessments] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const [formData, setFormData] = useState({
     assessment_id: "",
@@ -13,8 +15,6 @@ function Assessments() {
     term: "",
     year: "",
   });
-
-  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     fetchAssessments();
@@ -77,7 +77,13 @@ function Assessments() {
       year: assessment.year,
     });
 
+    setShowForm(true);
     setIsEditing(true);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const handleDelete = async (id) => {
@@ -108,144 +114,212 @@ function Assessments() {
     });
 
     setIsEditing(false);
+    setShowForm(false);
   };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-8">
 
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-orange-500">
-          Assessment Management
-        </h1>
+      {/* Header */}
 
-        <p className="text-gray-400 mt-2">
-          Manage CATs, assignments and examinations.
-        </p>
-      </div>
+      <div className="flex justify-between items-center mb-8">
 
-      {/* FORM */}
+        <div>
+          <h1 className="text-4xl font-bold text-orange-500">
+            Assessment Management
+          </h1>
 
-      <div className="bg-gray-800 p-6 rounded-xl mb-8">
-        <h2 className="text-2xl font-semibold text-orange-500 mb-4">
+          <p className="text-gray-400 mt-2">
+            Manage examinations and continuous assessments.
+          </p>
+        </div>
 
-          {isEditing
-            ? "Update Assessment"
-            : "Create Assessment"}
-
-        </h2>
-
-        <form
-          onSubmit={handleSubmit}
-          className="grid md:grid-cols-2 gap-4"
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className="bg-orange-500 hover:bg-orange-600 px-5 py-3 rounded-lg"
         >
+          {showForm
+            ? "Close Form"
+            : "Add Assessment"}
+        </button>
 
-          <input
-            type="text"
-            name="assessment_id"
-            placeholder="Assessment ID"
-            value={formData.assessment_id}
-            onChange={handleChange}
-            disabled={isEditing}
-            required
-            className="bg-gray-700 p-3 rounded-lg"
-          />
-
-          <input
-            type="text"
-            name="assessment_name"
-            placeholder="Assessment Name"
-            value={formData.assessment_name}
-            onChange={handleChange}
-            required
-            className="bg-gray-700 p-3 rounded-lg"
-          />
-
-          <select
-            name="assessment_type"
-            value={formData.assessment_type}
-            onChange={handleChange}
-            required
-            className="bg-gray-700 p-3 rounded-lg"
-          >
-            <option value="">
-              Select Assessment Type
-            </option>
-
-            <option value="Continuous Assessment">
-              Continuous Assessment
-            </option>
-
-            <option value="Examination">
-              Examination
-            </option>
-          </select>
-
-          <select
-            name="term"
-            value={formData.term}
-            onChange={handleChange}
-            required
-            className="bg-gray-700 p-3 rounded-lg"
-          >
-            <option value="">
-              Select Term
-            </option>
-
-            <option value="Term 1">
-              Term 1
-            </option>
-
-            <option value="Term 2">
-              Term 2
-            </option>
-
-            <option value="Term 3">
-              Term 3
-            </option>
-          </select>
-
-          <input
-            type="number"
-            name="year"
-            placeholder="Year"
-            value={formData.year}
-            onChange={handleChange}
-            required
-            className="bg-gray-700 p-3 rounded-lg"
-          />
-
-          <div className="flex gap-3">
-
-            <button
-              type="submit"
-              className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg"
-            >
-              {isEditing
-                ? "Update Assessment"
-                : "Create Assessment"}
-            </button>
-
-            {isEditing && (
-              <button
-                type="button"
-                onClick={resetForm}
-                className="bg-gray-600 hover:bg-gray-700 px-6 py-3 rounded-lg"
-              >
-                Cancel
-              </button>
-            )}
-
-          </div>
-
-        </form>
       </div>
 
-      {/* TABLE */}
+      {/* Statistics */}
 
-      <div className="bg-gray-800 rounded-xl overflow-hidden">
+      <div className="grid md:grid-cols-3 gap-4 mb-8">
 
-        <div className="p-6 border-b border-gray-700">
-          <h2 className="text-2xl font-semibold text-orange-500">
+        <div className="bg-gray-800 p-4 rounded-lg">
+          <h3 className="text-gray-400">
+            Total Assessments
+          </h3>
+
+          <p className="text-3xl font-bold text-orange-500">
+            {assessments.length}
+          </p>
+        </div>
+
+        <div className="bg-gray-800 p-4 rounded-lg">
+          <h3 className="text-gray-400">
+            Continuous Assessments
+          </h3>
+
+          <p className="text-3xl font-bold text-blue-400">
+            {
+              assessments.filter(
+                (a) =>
+                  a.assessment_type ===
+                  "Continuous Assessment"
+              ).length
+            }
+          </p>
+        </div>
+
+        <div className="bg-gray-800 p-4 rounded-lg">
+          <h3 className="text-gray-400">
+            Examinations
+          </h3>
+
+          <p className="text-3xl font-bold text-green-400">
+            {
+              assessments.filter(
+                (a) =>
+                  a.assessment_type ===
+                  "Examination"
+              ).length
+            }
+          </p>
+        </div>
+
+      </div>
+
+      {/* Form */}
+
+      {showForm && (
+        <div className="bg-gray-800 p-6 rounded-lg mb-8">
+
+          <h2 className="text-2xl text-orange-500 mb-4">
+
+            {isEditing
+              ? "Update Assessment"
+              : "Create Assessment"}
+
+          </h2>
+
+          <form
+            onSubmit={handleSubmit}
+            className="grid md:grid-cols-2 gap-4"
+          >
+
+            <input
+              type="text"
+              name="assessment_id"
+              placeholder="Assessment ID"
+              value={formData.assessment_id}
+              onChange={handleChange}
+              disabled={isEditing}
+              required
+              className="bg-gray-700 p-3 rounded"
+            />
+
+            <input
+              type="text"
+              name="assessment_name"
+              placeholder="Assessment Name"
+              value={formData.assessment_name}
+              onChange={handleChange}
+              required
+              className="bg-gray-700 p-3 rounded"
+            />
+
+            <select
+              name="assessment_type"
+              value={formData.assessment_type}
+              onChange={handleChange}
+              required
+              className="bg-gray-700 p-3 rounded"
+            >
+              <option value="">
+                Select Assessment Type
+              </option>
+
+              <option value="Continuous Assessment">
+                Continuous Assessment
+              </option>
+
+              <option value="Examination">
+                Examination
+              </option>
+            </select>
+
+            <select
+              name="term"
+              value={formData.term}
+              onChange={handleChange}
+              required
+              className="bg-gray-700 p-3 rounded"
+            >
+              <option value="">
+                Select Term
+              </option>
+
+              <option value="Term 1">
+                Term 1
+              </option>
+
+              <option value="Term 2">
+                Term 2
+              </option>
+
+              <option value="Term 3">
+                Term 3
+              </option>
+            </select>
+
+            <input
+              type="number"
+              name="year"
+              placeholder="Year"
+              value={formData.year}
+              onChange={handleChange}
+              required
+              className="bg-gray-700 p-3 rounded"
+            />
+
+            <div className="flex gap-3">
+
+              <button
+                type="submit"
+                className="bg-orange-500 hover:bg-orange-600 px-5 py-3 rounded"
+              >
+                {isEditing
+                  ? "Update"
+                  : "Save"}
+              </button>
+
+              {isEditing && (
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className="bg-gray-600 hover:bg-gray-700 px-5 py-3 rounded"
+                >
+                  Cancel
+                </button>
+              )}
+
+            </div>
+
+          </form>
+
+        </div>
+      )}
+
+      {/* Table */}
+
+      <div className="bg-gray-800 rounded-lg overflow-hidden">
+
+        <div className="p-4 border-b border-gray-700">
+          <h2 className="text-2xl text-orange-500">
             Assessments
           </h2>
         </div>
@@ -262,7 +336,9 @@ function Assessments() {
                 <th className="p-4 text-left">Type</th>
                 <th className="p-4 text-left">Term</th>
                 <th className="p-4 text-left">Year</th>
-                <th className="p-4 text-center">Actions</th>
+                <th className="p-4 text-center">
+                  Actions
+                </th>
               </tr>
 
             </thead>
@@ -275,7 +351,7 @@ function Assessments() {
 
                   <tr
                     key={assessment.assessment_id}
-                    className="border-b border-gray-700 hover:bg-gray-700"
+                    className="border-b border-gray-700"
                   >
 
                     <td className="p-4">
@@ -304,7 +380,7 @@ function Assessments() {
                         onClick={() =>
                           handleEdit(assessment)
                         }
-                        className="bg-blue-500 px-4 py-2 rounded-lg mr-2"
+                        className="bg-blue-500 px-4 py-2 rounded mr-2"
                       >
                         Edit
                       </button>
@@ -315,7 +391,7 @@ function Assessments() {
                             assessment.assessment_id
                           )
                         }
-                        className="bg-red-500 px-4 py-2 rounded-lg"
+                        className="bg-red-500 px-4 py-2 rounded"
                       >
                         Delete
                       </button>
