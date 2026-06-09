@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import TeacherSidebar from "../components/TeacherSidebar";
+const API_URL = "https://ikonex-academy-1b17.onrender.com";
+
 
 function Streams() {
   const [streams, setStreams] = useState([]);
