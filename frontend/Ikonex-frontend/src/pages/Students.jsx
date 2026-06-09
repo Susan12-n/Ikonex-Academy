@@ -212,24 +212,28 @@ function Students() {
             <option value="Female">Female</option>
           </select>
 
-          <select
-            name="stream_id"
-            value={formData.stream_id}
-            onChange={handleChange}
-            required
-            className="bg-gray-700 border border-gray-600 rounded-lg p-3"
-          >
-            <option value="">Select Stream</option>
+         <select
+  name="stream_id"
+  value={formData.stream_id}
+  onChange={handleChange}
+  required
+  className="bg-gray-700 border border-gray-600 rounded-lg p-3"
+>
+  <option value="">
+    {streams.length === 0
+      ? "No Streams Available"
+      : "Select Stream"}
+  </option>
 
-            {streams.map((stream) => (
-              <option
-                key={stream.stream_id}
-                value={stream.stream_id}
-              >
-                {stream.stream_name}
-              </option>
-            ))}
-          </select>
+  {streams.map((stream) => (
+    <option
+      key={stream.stream_id}
+      value={stream.stream_id}
+    >
+      {stream.stream_name}
+    </option>
+  ))}
+</select>
 
           <div className="flex gap-3">
             <button
