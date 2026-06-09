@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const API_URL = "https://ikonex-academy-1b17.onrender.com";
+
 
 function AdminDashboard() {
   const [students, setStudents] = useState([]);

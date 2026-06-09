@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+const API_URL = "https://ikonex-academy-1b17.onrender.com";
+
 
 function Students() {
   const [students, setStudents] = useState([]);

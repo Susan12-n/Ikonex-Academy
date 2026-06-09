@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import TeacherSidebar from "../components/TeacherSidebar";
 
+const API_URL = "https://ikonex-academy-1b17.onrender.com";
+
 function TeacherDashboard() {
   const navigate = useNavigate();
 
@@ -19,10 +21,10 @@ function TeacherDashboard() {
     try {
       const [studentsRes, streamsRes, subjectsRes, scoresRes] =
         await Promise.all([
-          axios.get(`${import.meta.env.VITE_API_URL}/api/students`),
-          axios.get(`${import.meta.env.VITE_API_URL}/api/streams`),
-          axios.get(`${import.meta.env.VITE_API_URL}/api/subjects`),
-          axios.get(`${import.meta.env.VITE_API_URL}/api/scores`),
+          axios.get(`${API_URL}/api/students`),
+          axios.get(`${API_URL}/api/streams`),
+          axios.get(`${API_URL}/api/subjects`),
+          axios.get(`${API_URL}/api/scores`),
         ]);
 
       setStudents(studentsRes.data);
