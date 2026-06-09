@@ -24,7 +24,7 @@ function Students() {
   const fetchStudents = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/students`
+        `${API_URL}/api/students`
       );
 
       setStudents(res.data);
@@ -36,7 +36,7 @@ function Students() {
   const fetchStreams = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/streams`
+        `${API_URL}/api/streams`
       );
 
       setStreams(res.data);
@@ -58,14 +58,14 @@ function Students() {
     try {
       if (isEditing) {
         await axios.put(
-          `${import.meta.env.VITE_API_URL}/api/students/${formData.student_id}`,
+          `${API_URL}/api/students/${formData.student_id}`,
           formData
         );
 
         alert("Student updated successfully");
       } else {
         await axios.post(
-          `${import.meta.env.VITE_API_URL}/api/students`,
+          `${API_URL}/api/students`,
           formData
         );
 
@@ -112,7 +112,7 @@ function Students() {
 
     try {
       await axios.delete(
-        `${import.meta.env.VITE_API_URL}/api/students/${id}`
+        `${API_URL}/api/students/${id}`
       );
 
       fetchStudents();

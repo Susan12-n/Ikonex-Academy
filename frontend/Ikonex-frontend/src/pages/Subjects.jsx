@@ -18,7 +18,7 @@ function Subjects() {
   const fetchSubjects = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/subjects"
+        `${API_URL}/api/subjects`
       );
 
       setSubjects(res.data);
@@ -40,7 +40,7 @@ function Subjects() {
     try {
       if (isEditing) {
         await axios.put(
-          `http://localhost:5000/api/subjects/${formData.subject_id}`,
+          `${API_URL}/api/subjects/${formData.subject_id}`,
           {
             subject_name: formData.subject_name,
           }
@@ -49,7 +49,7 @@ function Subjects() {
         alert("Subject updated successfully");
       } else {
         await axios.post(
-          "http://localhost:5000/api/subjects",
+          `${API_URL}/api/subjects`,
           formData
         );
 
@@ -88,7 +88,7 @@ function Subjects() {
 
     try {
       await axios.delete(
-        `${import.meta.env.VITE_API_URL}/api/subjects/${id}`
+        `${API_URL}/api/subjects/${id}`
       );
 
       fetchSubjects();

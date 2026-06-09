@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 
@@ -25,6 +26,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match");
       return;
@@ -32,7 +34,7 @@ function Register() {
 
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/register`,
+        `${API_URL}/api/auth/register`,
         {
           fullname: formData.fullname,
           email: formData.email,

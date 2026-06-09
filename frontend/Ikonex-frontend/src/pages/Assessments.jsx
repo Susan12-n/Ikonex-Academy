@@ -18,7 +18,7 @@ function Assessments() {
 
   const fetchAssessments = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/assessments`);
+      const res = await axios.get(`${API_URL}/api/assessments`);
       setAssessments(res.data);
     } catch (error) {
       console.error("Fetch error:", error);
@@ -38,7 +38,7 @@ function Assessments() {
     try {
       if (isEditing) {
         await axios.put(
-          `${import.meta.env.VITE_API_URL}/api/assessments/${formData.assessment_id}`,
+          `${API_URL}/api/assessments/${formData.assessment_id}`,
           {
             term: formData.term,
             year: formData.year,
@@ -48,7 +48,7 @@ function Assessments() {
         alert("Assessment updated successfully");
       } else {
         await axios.post(
-          `${import.meta.env.VITE_API_URL}/api/assessments`,
+          `${API_URL}/api/assessments`,
           formData
         );
 
@@ -81,7 +81,7 @@ function Assessments() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/assessments/${id}`);
+      await axios.delete(`${API_URL}/api/assessments/${id}`);
       fetchAssessments();
     } catch (error) {
       console.error("Delete error:", error);

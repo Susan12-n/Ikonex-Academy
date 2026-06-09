@@ -10,7 +10,7 @@ function Results() {
 
   const fetchResults = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/results/class-results`);
+      const res = await axios.get(`${API_URL}/api/results/class-results`);
       setResults(res.data);
     } catch (error) {
       console.error(error);
@@ -19,7 +19,7 @@ function Results() {
 
   const downloadReport = (student_id) => {
   window.open(
-    `${import.meta.env.VITE_API_URL}/api/report/${student_id}`,
+    `${API_URL}/api/report/${student_id}`,
     "_blank"
   );
 };
