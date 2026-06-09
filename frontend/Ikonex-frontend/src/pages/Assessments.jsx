@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+const API_URL = "https://ikonex-academy-1b17.onrender.com";
+
 
 function Assessments() {
   const [assessments, setAssessments] = useState([]);
@@ -99,39 +101,37 @@ function Assessments() {
         <form onSubmit={handleSubmit} className="grid md:grid-cols-3 gap-4">
 
           <input
-            name="assessment_id"
-            placeholder="Assessment ID"
-            value={formData.assessment_id}
-            onChange={handleChange}
-            disabled={isEditing}
-            className="p-3 bg-gray-700 rounded"
-            required
-          />
+  type="text"
+  name="assessment_name"
+  placeholder="Assessment Name"
+/>
 
-          <input
-            name="term"
-            placeholder="Term"
-            value={formData.term}
-            onChange={handleChange}
-            className="p-3 bg-gray-700 rounded"
-            required
-          />
+<select
+  name="assessment_type"
+>
+  <option value="">
+    Select Type
+  </option>
 
-          <input
-            name="year"
-            placeholder="Year"
-            value={formData.year}
-            onChange={handleChange}
-            className="p-3 bg-gray-700 rounded"
-            required
-          />
+  <option value="Continuous Assessment">
+    Continuous Assessment
+  </option>
 
-          <button
-            type="submit"
-            className="bg-orange-500 p-3 rounded font-bold md:col-span-3"
-          >
-            {isEditing ? "Update Assessment" : "Add Assessment"}
-          </button>
+  <option value="Examination">
+    Examination
+  </option>
+</select>
+
+<select name="term">
+  <option>Term 1</option>
+  <option>Term 2</option>
+  <option>Term 3</option>
+</select>
+
+<input
+  type="number"
+  name="year"
+/>
         </form>
       </div>
 
