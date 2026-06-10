@@ -100,7 +100,7 @@ function TeacherDashboard() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             <div
-              onClick={() => navigate("/add-student")}
+              onClick={() => navigate("/students")}
               className="bg-gray-800 p-6 rounded-xl shadow-lg hover:bg-gray-700 cursor-pointer transition"
             >
               <h3 className="text-xl font-semibold text-orange-500">
