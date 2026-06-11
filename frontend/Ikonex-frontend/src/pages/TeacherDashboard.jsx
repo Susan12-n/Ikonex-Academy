@@ -100,14 +100,14 @@ function TeacherDashboard() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             <div
-              onClick={() => navigate("/students")}
+              onClick={() => navigate("/results")}
               className="bg-gray-800 p-6 rounded-xl shadow-lg hover:bg-gray-700 cursor-pointer transition"
             >
               <h3 className="text-xl font-semibold text-orange-500">
-                Add Student
+                View results
               </h3>
               <p className="text-gray-400 mt-2">
-                Register new students into the system.
+                View and manage student results.
               </p>
             </div>
 
