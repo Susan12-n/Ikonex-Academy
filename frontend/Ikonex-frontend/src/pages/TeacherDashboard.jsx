@@ -185,7 +185,8 @@ function TeacherDashboard() {
 
                 <thead>
                   <tr className="border-b border-gray-700">
-                    <th className="text-left py-3">Name</th>
+                    <th className="text-left py-3">First Name</th>
+                    <th className="text-left py-3">Last Name</th>
                     <th className="text-left py-3">Admission No</th>
                   </tr>
                 </thead>
@@ -197,7 +198,11 @@ function TeacherDashboard() {
                       className="border-b border-gray-700"
                     >
                       <td className="py-3">
-                        {student.fullname}
+                        {student.firstname}
+                      </td>
+
+                      <td className="py-3">
+                        {student.lastname}
                       </td>
 
                       <td className="py-3">
