@@ -13,7 +13,7 @@ import Subjects from "./pages/Subjects";
 import Scores from "./pages/Scores";
 import Assessments from "./pages/Assessments";
 import Results from "./pages/results";
-import Report from "./pages/Report";
+
 
 function App() {
   return (
@@ -50,7 +50,7 @@ function App() {
 <Route path="/scores" element={<Scores />} />
 <Route path="/assessments" element={<Assessments />} />
 <Route path="/results" element={<Results />} />
-<Route path="/report/:student_id" element={<Report />} />
+{/* <Route path="/report/:student_id" element={<Report />} /> */}
       </Routes>
     </BrowserRouter>
   );
