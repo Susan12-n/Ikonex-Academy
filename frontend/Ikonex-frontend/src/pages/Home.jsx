@@ -356,20 +356,20 @@ function Home() {
         <li>
     Email:{" "}
     <a
-      href="mailto:susanngesa@example.com"
+      href="mailto:ngesasuzan@gmail.com"
       className="hover:text-white"
     >
-      susanngesa@example.com
+      ngesasuzan@gmail.com
     </a>
   </li>
 
   <li>
     Phone:{" "}
     <a
-      href="tel:+254700000000"
+      href="tel:+254712461219"
       className="hover:text-white"
     >
-      +254 700 000 000
+      +254 712 461 219
     </a>
   </li>
 
