@@ -8,6 +8,13 @@ import {
 } from "react-icons/fa";
 import logo from "../assets/ikonex-logo.png";
 
+
+const handleEmail = () => {
+  window.location.href =
+    "mailto:susanngesa@gmail.com?subject=Contact Form Inquiry";
+};
+
+
 function Home() {
   return (
     <div className="bg-gray-800 text-white min-h-screen">
@@ -272,11 +279,12 @@ function Home() {
             ></textarea>
 
             <button
-              type="submit"
-              className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg"
-            >
-              Send Message
-            </button>
+  type="button"
+  onClick={handleEmail}
+  className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg"
+>
+  Send Message
+</button>
           </form>
         </div>
       </section>
@@ -345,9 +353,27 @@ function Home() {
       </h4>
 
       <ul className="space-y-2 text-gray-400">
-        <li>Email: info@studentms.com</li>
-        <li>Phone: +254 700 000 000</li>
-        <li>Nairobi, Kenya</li>
+        <li>
+    Email:{" "}
+    <a
+      href="mailto:susanngesa@example.com"
+      className="hover:text-white"
+    >
+      susanngesa@example.com
+    </a>
+  </li>
+
+  <li>
+    Phone:{" "}
+    <a
+      href="tel:+254700000000"
+      className="hover:text-white"
+    >
+      +254 700 000 000
+    </a>
+  </li>
+
+  <li>Nairobi, Kenya</li>
       </ul>
     </div>
 
