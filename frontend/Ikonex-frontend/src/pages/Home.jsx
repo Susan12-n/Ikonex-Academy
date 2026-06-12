@@ -18,7 +18,7 @@ function Home() {
   className="relative min-h-screen flex items-center justify-center overflow-hidden"
   style={{
     backgroundImage:
-      "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1920&q=80')",
+      "url('https://unsplash.com/photos/1-aA2Fadydc/download?force=true')",
     backgroundSize: "cover",
     backgroundPosition: "center",
   }}
@@ -45,11 +45,7 @@ function Home() {
       "
     >
 
-      {/* Badge */}
-      <div className="inline-flex items-center px-4 py-2 mb-6 rounded-full bg-white/10 border border-white/20 text-white text-sm">
-        🎓 Modern School Administration Platform
-      </div>
-
+      
       <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
         Student Management
         <span className="block text-orange-500">
@@ -358,7 +354,10 @@ function Home() {
   </div>
 
   <div className="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500">
-    © 2026 Student Management System. All Rights Reserved.
+   <p>
+    © {new Date().getFullYear()} Student Management System |
+    Developed by <strong>Susan Ngesa</strong>
+  </p>
   </div>
 
 </footer>

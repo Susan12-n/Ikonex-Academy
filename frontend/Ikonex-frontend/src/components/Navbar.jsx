@@ -6,14 +6,6 @@ function Navbar() {
     <nav className="bg-black/95 backdrop-blur-md shadow-lg fixed top-0 left-0 w-full z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
-        {/* Logo + Brand */}
-        <div className="flex items-center gap-3">
-
-          <img
-            src={logo}
-            alt="Ikonex Academy Logo"
-            className="w-14 h-14 object-contain"
-          />
 
           <div className="leading-tight">
             <h1 className="text-2xl font-bold">
@@ -26,7 +18,7 @@ function Navbar() {
             </p>
           </div>
 
-        </div>
+    
 
         {/* Navigation Links */}
         <ul className="hidden md:flex items-center gap-8 text-white font-medium">
