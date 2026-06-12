@@ -49,9 +49,10 @@ function Register() {
       console.error(error);
 
       alert(
-        error.response?.data?.message ||
-        "Registration failed"
-      );
+    err.response?.data?.message ||
+    err.response?.data?.error ||
+    err.message
+  );
     }
   };
 
